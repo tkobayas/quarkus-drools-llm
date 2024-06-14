@@ -24,28 +24,26 @@ Given these premises why not mixing 2 very different and complementary AI branch
 
 The goal of this project is to demonstrate how [Quarkus](https://quarkus.io/), with the help of its [Drools](https://www.drools.org/) and [LangChain4j](https://github.com/langchain4j/langchain4j) extensions, allows to easily integrate these 2 technologies and combine them to implement this mortgage example and other interesting use cases. 
 
-## Installing and integrating a local LLM engine
+## Integrating OpenAI API
 
-LangChain4j provides an abstraction on top of an underlying LLM, so you could switch between different implementations, and for example integrate ChatGPT, with very few configuration changes. In order to have a self-contained application, not relying on any external service, the current configuration uses on a locally running [Ollama](https://github.com/ollama/ollama) server. 
+LangChain4j provides an abstraction on top of an underlying LLM, so you could switch between different implementations, and for example integrate ChatGPT, with very few configuration changes.
 
-Ollama has a [library](https://ollama.com/library) with quite a long list of different models. This project defaults to a model called Mistral 7B that offers a good compromise between system requirements and capabilities. This choice has been configured in the Quarkus application.properties file as it follows: 
+This `openai` branch is to integrate with OpenAI's GPT-3. To use it, you need to provide your OpenAI API key as an environment variable:
 
-```properties
-# Configure Ollama server to use Mistral 7B model
-quarkus.langchain4j.ollama.chat-model.model-id=mistral
-# Choose a low temperature to minimize hallucination
-quarkus.langchain4j.ollama.chat-model.temperature=0.1
-# Set timeout to 3 minutes (local LLM can be quite slow)
-quarkus.langchain4j.ollama.timeout=180s
-# Enable logging of both requests and responses
-quarkus.langchain4j.ollama.log-requests=true
-quarkus.langchain4j.ollama.log-responses=true
+```shell script
+export QUARKUS_LANGCHAIN4J_OPENAI_API_KEY=<your-openai-api-key>
+export QUARKUS_LANGCHAIN4J_OPENAI_HOTMODEL_API_KEY=<your-openai-api-key>
 ```
 
-For detailed instructions of Ollama please refer to the [Ollama](https://github.com/ollama/ollama) documentation, but for example, you can start the containerized server with Mistral model by the following command in order to run this application:
-```shell script
-docker run -d -v ollama:/root/.ollama -p 11434:11434 --name ollama ollama/ollama
-docker exec -it ollama ollama run mistral
+```properties
+quarkus.langchain4j.openai.chat-model.model-name=gpt-3.5-turbo
+# Choose a low temperature to minimize hallucination
+quarkus.langchain4j.openai.chat-model.temperature=0.1
+# Set timeout to 1 minutes
+quarkus.langchain4j.openai.timeout=60s
+# Enable logging of both requests and responses
+quarkus.langchain4j.openai.log-requests=true
+quarkus.langchain4j.openai.log-responses=true
 ```
 
 ## Running the application
