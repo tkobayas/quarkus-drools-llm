@@ -15,6 +15,10 @@ public record Customer(String firstName, String lastName, int age) implements Va
         return firstName + " " + lastName;
     }
 
+    public String getFullNameEasternStyle() {
+        return lastName + " " + firstName;
+    }
+
     @Override
     public boolean isValid() {
         return firstName != null && !firstName.isEmpty() && age > 0;

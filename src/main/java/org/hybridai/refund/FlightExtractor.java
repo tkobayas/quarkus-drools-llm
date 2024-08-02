@@ -10,7 +10,7 @@ import org.hybridai.refund.model.Flight;
 @Singleton
 public interface FlightExtractor {
 
-    @UserMessage("Extract information about a flight from this text '{text}'. The response must contain only the JSON with flight's data and without any other sentence.")
+    @UserMessage("このテキストからフライトに関する情報を抽出してください '{text}'。レスポンスは JSON フォーマットのフライトのデータのみです。他の文は含めないでください。")
     Flight extractData(String text);
 }
 

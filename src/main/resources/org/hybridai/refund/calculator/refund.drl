@@ -2,13 +2,13 @@ package org.hybridai.refund.calculator;
 
 import org.hybridai.refund.model.*;
 
-rule "Refund eligibility" when
+rule "遅延による返金対象判定" when
 	Flight( $delay : delayInMinutes >= 60 )
 then
-	insert(new RefundAmount( 2 * $delay ));
+	insert(new RefundAmount( 20 * $delay ));
 end
 
-rule "Increase refund of 10% for seniors" when
+rule "高齢者向け返金増額" when
 	Customer( age > 65 )
 	$r: RefundAmount()
 then

@@ -22,9 +22,9 @@ public class DroolsRefundCalculator {
         var refunds = kieSession.getInstancesOf(RefundAmount.class);
 
         if (refunds.isEmpty()) {
-            return "Sorry " + sessionData.getCustomer().getFullName() + ", but you are not eligible for any refund.";
+            return "申し訳ありません、 " + sessionData.getCustomer().getFullNameEasternStyle() + "様、 ご返金の対象となるものはありません。";
         }
         RefundAmount refund = refunds.iterator().next();
-        return "Good news " + sessionData.getCustomer().getFullName() + ", you are eligible for a refund of $" + refund.getAmount();
+        return "ご迷惑をお掛けしました。" + sessionData.getCustomer().getFullNameEasternStyle() + "様、 ご返金の対象となる金額は " + (int) refund.getAmount() + "円 です。";
     }
 }

@@ -11,10 +11,10 @@ import org.hybridai.llmutil.StatefulChat;
 @Singleton
 public interface FlightChatService {
 
-    @SystemMessage("<<SYS>>You are a chat bot of an airline company. Your goal is asking questions to gather information " +
-            "about the customer's flight and which problems he had with it<</SYS>>")
+    @SystemMessage("<<SYS>>あなたは航空会社のチャットボットです。" +
+            "あなたの目的は、質問をして顧客のフライトについての情報を収集し、どのような問題があったかを把握することです<</SYS>>")
     @UserMessage("""
-        Ask question to the customer regarding the number of the flight and its eventual delay.
+        顧客にフライトの便名と遅延時間について質問してください。
 
         +++
         {message}
