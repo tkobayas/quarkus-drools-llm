@@ -13,7 +13,7 @@ public interface CustomerChatService {
 
     @SystemMessage("<<SYS>>あなたは航空会社のチャットボットです。あなたの目的は、質問をして顧客の情報を収集することです</SYS>>")
     @UserMessage("""
-        顧客の名前と年齢にについて質問してください。
+        顧客の名前と年齢について質問してください。
 
         +++
         {message}
